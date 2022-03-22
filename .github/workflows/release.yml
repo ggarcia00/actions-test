@@ -14,7 +14,12 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@v2
+    - uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: 'release.zip'
+        exclusions: '*.git* /*node_modules/* .editorconfig'
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "*.txt"
+        artifacts: "release.zip"
         token: ${{ secrets.GITHUB_TOKEN }}
